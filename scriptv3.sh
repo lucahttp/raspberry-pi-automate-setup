@@ -31,12 +31,22 @@ python get-pip.py
 
 
 
+
+virtualenv OctoPrint
+OctoPrint/bin/pip install OctoPrint
+./OctoPrint/bin/octoprint
+#https://octoprint.org/download/
+
+sudo usermod -a -G tty pi
+sudo usermod -a -G dialout pi
+
+
 ##########
 ########
 #####
 cd ~
-sudo apt update
-sudo apt install -y python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential
+#sudo apt update
+sudo apt install -y python3-pip python3-dev python3-setuptools python3-virtualenv git libyaml-dev build-essential
 mkdir OctoPrint && cd OctoPrint
 virtualenv venv
 source venv/bin/activate
