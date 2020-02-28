@@ -55,7 +55,7 @@ sudo chmod +x /etc/init.d/octoprint
 #DAEMON=/home/pi/OctoPrint/venv/bin/octoprint
 #-----
 
-#https://stackoverflow.com/questions/24889346/how-to-uncomment-a-line-that-contains-a-specific-string-using-sed
+#https://stackoverflow.com/questions/24889346/how o-uncomment-a-line hat-contains-a-specific-string-using-sed
 #sed -i '/^#.* 2001 /s/^#//' file
 #sed -i '/^#.* DAEMON=/home/pi/OctoPrint/venv/bin/octoprint /s/^#//' /etc/default/octoprint
 
@@ -63,7 +63,8 @@ sudo chmod +x /etc/init.d/octoprint
 #sed -i '/<pattern>/s/^/#/g' file #comment
 #sed -i '/<pattern>/s/^#//g' file #uncomment
 
-sed -i '/DAEMON=/home/pi/OctoPrint/venv/bin/octoprint/s/^#//g' /etc/default/octoprint #uncomment
+##sed -i '/DAEMON=/home/pi/OctoPrint/venv/bin/octoprint/s/^#//g' /etc/default/octoprint #uncomment
+sudo sed -i '/OctoPrint/s/^#//g' /etc/default/octoprint
 
 sudo update-rc.d octoprint defaults
 #sudo service octoprint {start|stop|restart}
@@ -80,27 +81,30 @@ sudo service octoprint start
 
 ## Install MQTT
 
-sudo apt install -t -y mosquitto mosquitto-clients
+sudo apt install   -y mosquitto mosquitto-clients
 sudo systemctl enable mosquitto.service
 mosquitto -v
 hostname -I
 
 ## Install NodeRed
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
-#apt-get install -t -y nodered
+#apt-get install   -y nodered
 sudo systemctl enable nodered.service
 
 
 
-## Install LAMPP
+##########
+#####   Install LAMPP
+##
+
 
 # APACHE
-sudo apt install -t -y apache2
+sudo apt install -y apache2
 
 cd /var/www/
 sudo chown -R www-data:www-data html
-sudo find html -type d -print -exec chmod 775 {} \;
-sudo find html -type f -print -exec chmod 664 {} \;
+sudo find html  ype d -print -exec chmod 775 {} \;
+sudo find html  ype f -print -exec chmod 664 {} \;
 
 usermod -a -G www-data pi
 
@@ -110,16 +114,21 @@ EOF
 
 
 # PHP
-sudo apt install -t -y php7.1 php7.1-mysql libapache2-mod-php7.1
+sudo apt install -y php7.1 php7.1-mysql libapache2-mod-php7.1
 sudo /etc/init.d/apache2 restart
 sudo /etc/init.d/apache2 status
 
 # MariaDB
 
-sudo apt install -t -y mariadb-server
+sudo apt install -y mariadb-server
 #mysql -u user -p
 /etc/init.d/apache2 restart
-#https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/
+#https://linuxize.com/post/how o-create-mysql-user-accounts-and-grant-privileges/
+
+
+##
+#####   CHECKED
+##########
 
 ## Finish
 
