@@ -31,6 +31,9 @@ python get-pip.py
 
 
 
+##########
+########    OCTOPRINT
+#####
 
 virtualenv OctoPrint
 OctoPrint/bin/pip install OctoPrint
@@ -39,6 +42,31 @@ OctoPrint/bin/pip install OctoPrint
 
 sudo usermod -a -G tty pi
 sudo usermod -a -G dialout pi
+
+#-----
+wget https://github.com/foosel/OctoPrint/raw/master/scripts/octoprint.init && sudo mv octoprint.init /etc/init.d/octoprint
+wget https://github.com/foosel/OctoPrint/raw/master/scripts/octoprint.default && sudo mv octoprint.default /etc/default/octoprint
+sudo chmod +x /etc/init.d/octoprint
+#sudo nano /etc/default/octoprint
+#-----
+
+#-----
+#Remove the # from the front of this line:
+#DAEMON=/home/pi/OctoPrint/venv/bin/octoprint
+#-----
+sudo sed -i '/OctoPrint/s/^#//g' /etc/default/octoprint #works for me insted the before line
+
+sudo update-rc.d octoprint defaults
+#sudo service octoprint {start|stop|restart}
+sudo service octoprint start
+
+
+
+
+#####
+########    OCTOPRINT
+##########
+
 
 
 ##########
