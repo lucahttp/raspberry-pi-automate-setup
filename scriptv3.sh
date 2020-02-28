@@ -64,7 +64,7 @@ sudo chmod +x /etc/init.d/octoprint
 #sed -i '/<pattern>/s/^#//g' file #uncomment
 
 ##sed -i '/DAEMON=/home/pi/OctoPrint/venv/bin/octoprint/s/^#//g' /etc/default/octoprint #uncomment
-sudo sed -i '/OctoPrint/s/^#//g' /etc/default/octoprint
+sudo sed -i '/OctoPrint/s/^#//g' /etc/default/octoprint #works for me insted the before line
 
 sudo update-rc.d octoprint defaults
 #sudo service octoprint {start|stop|restart}
@@ -101,16 +101,21 @@ sudo systemctl enable nodered.service
 # APACHE
 sudo apt install -y apache2
 
+#cd /var/www/
+#sudo chown -R www-data:www-data html
+#sudo find html  ype d -print -exec chmod 775 {} \;
+#sudo find html  ype f -print -exec chmod 664 {} \;
+
 cd /var/www/
 sudo chown -R www-data:www-data html
-sudo find html  ype d -print -exec chmod 775 {} \;
-sudo find html  ype f -print -exec chmod 664 {} \;
+sudo find html -type d -print -exec chmod 775 {} \;
+sudo find html -type f -print -exec chmod 664 {} \;
 
-usermod -a -G www-data pi
+sudo usermod -a -G www-data pi
 
-cat > /var/www/html/index.php << "EOF"
-<?php phpinfo(); ?>
-EOF
+#cat > /var/www/html/index.php << "EOF"
+#<?php phpinfo(); ?>
+#EOF
 
 
 # PHP
