@@ -168,7 +168,22 @@ sudo apt install -y mariadb-server
 /etc/init.d/apache2 restart
 #https://linuxize.com/post/how o-create-mysql-user-accounts-and-grant-privileges/
 
+CREATE USER 'newuser'@'%' IDENTIFIED BY 'user_password';
+CREATE USER 'luca'@'%' IDENTIFIED BY 'Yguanna32';
+CREATE USER 'test'@'%' IDENTIFIED BY 'test';
 
+
+GRANT ALL PRIVILEGES ON *.* TO 'database_user'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'luca'@'%';
+GRANT ALL PRIVILEGES ON test TO 'test'@'%';
+
+
+
+sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+
+#sudo find / -name my.cnf
+
+sudo service mysql restart
 ##
 #####   CHECKED
 ##########
@@ -185,3 +200,25 @@ reboot
 
 
 #https://gist.github.com/haisum/4fcd9146b6c972d0d3ca
+
+
+
+
+#Install AstroPrint Connection to octoprint
+
+#https://www.techcoil.com/blog/how-to-setup-python-imaging-library-pillow-on-raspbian-stretch-lite-for-processing-images-on-your-raspberry-pi/
+
+
+
+
+sudo apt-get update
+sudo apt-get install libjpeg-dev -y
+sudo apt-get install zlib1g-dev -y
+sudo apt-get install libfreetype6-dev -y
+sudo apt-get install liblcms1-dev -y
+sudo apt-get install libopenjp2-7 -y
+sudo apt-get install libtiff5 -y
+
+
+
+pip install pillow
