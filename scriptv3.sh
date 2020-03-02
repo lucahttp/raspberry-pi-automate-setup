@@ -208,9 +208,6 @@ reboot
 
 #https://www.techcoil.com/blog/how-to-setup-python-imaging-library-pillow-on-raspbian-stretch-lite-for-processing-images-on-your-raspberry-pi/
 
-
-
-
 sudo apt-get update
 sudo apt-get install libjpeg-dev -y
 sudo apt-get install zlib1g-dev -y
