@@ -4,7 +4,7 @@
 
 # Install packages
 PACKAGES="git build-essential python3-pip python-pip"
-rpi-update
+rpi-update -y
 apt-get update
 apt-get upgrade -y
 apt-get install $PACKAGES -y
