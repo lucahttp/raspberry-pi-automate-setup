@@ -4,29 +4,12 @@
 
 # Install packages
 PACKAGES="git build-essential python3-pip python-pip"
-rpi-update -y
 apt-get update
 apt-get upgrade -y
 apt-get install $PACKAGES -y
 
-
-##PIP
-#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-#python get-pip.py
-
-
-
-#echo "<?php phpinfo(); ?>" >> /var/www/html/index.php
-
-## Install MQTT
-
-#sudo apt install   -y mosquitto mosquitto-clients
-#sudo systemctl enable mosquitto.service
-#mosquitto -v
-hostname -I
-
 ## Install NodeRed
-bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+#sh curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered
 #apt-get install   -y nodered
 sudo systemctl enable nodered.service
 
@@ -69,13 +52,8 @@ sudo apt install -y mariadb-server
 /etc/init.d/apache2 restart
 #https://linuxize.com/post/how o-create-mysql-user-accounts-and-grant-privileges/
 
-
-CREATE USER 'test'@'%' IDENTIFIED BY 'test';
-
-
-
-GRANT ALL PRIVILEGES ON test TO 'test'@'%';
-
+mysql -e "CREATE USER 'test'@'%' IDENTIFIED BY 'test';"
+mysql -e "GRANT ALL PRIVILEGES ON test TO 'test'@'%';"
 
 #sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 #sed 's/Linux/Unix/' linuxgeek.txt
