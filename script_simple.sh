@@ -28,16 +28,15 @@ sudo apt install -y apache2
 #sudo find html  ype d -print -exec chmod 775 {} \;
 #sudo find html  ype f -print -exec chmod 664 {} \;
 
-cd /var/www/
-sudo chown -R www-data:www-data html
-sudo find html -type d -print -exec chmod 775 {} \;
-sudo find html -type f -print -exec chmod 664 {} \;
+mkdir /var/www/html
+chown www-data:www-data /var/www/html
+find /var/www/html -type d -print -exec chmod 775 {} \;
+find /var/www/html -type f -print -exec chmod 664 {} \;
+usermod -aG www-data pi
+cat > /var/www/html/index.php << "EOF"
+<?php phpinfo(); ?>
+EOF
 
-sudo usermod -a -G www-data pi
-
-#cat > /var/www/html/index.php << "EOF"
-#<?php phpinfo(); ?>
-#EOF
 
 
 # PHP
