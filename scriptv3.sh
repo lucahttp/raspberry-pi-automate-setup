@@ -168,18 +168,20 @@ sudo apt install -y mariadb-server
 /etc/init.d/apache2 restart
 #https://linuxize.com/post/how o-create-mysql-user-accounts-and-grant-privileges/
 
-CREATE USER 'newuser'@'%' IDENTIFIED BY 'user_password';
-CREATE USER 'luca'@'%' IDENTIFIED BY 'Yguanna32';
+#CREATE USER 'newuser'@'%' IDENTIFIED BY 'user_password';
+#CREATE USER 'luca'@'%' IDENTIFIED BY 'test';
 CREATE USER 'test'@'%' IDENTIFIED BY 'test';
 
 
-GRANT ALL PRIVILEGES ON *.* TO 'database_user'@'localhost';
-GRANT ALL PRIVILEGES ON *.* TO 'luca'@'%';
+#GRANT ALL PRIVILEGES ON *.* TO 'database_user'@'localhost';
+#GRANT ALL PRIVILEGES ON *.* TO 'luca'@'%';
 GRANT ALL PRIVILEGES ON test TO 'test'@'%';
 
 
-
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+#sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+#sudo sed -i '/OctoPrint/s/^#//g' /etc/default/octoprint #works for me insted the before line
+#sed 's/Linux/Unix/' linuxgeek.txt
+sudo sed 's/127.0.0.1/0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 #sudo find / -name my.cnf
 
