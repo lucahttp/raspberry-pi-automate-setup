@@ -51,8 +51,32 @@ sudo apt install -y mariadb-server
 /etc/init.d/apache2 restart
 #https://linuxize.com/post/how o-create-mysql-user-accounts-and-grant-privileges/
 
-mysql -e "CREATE USER 'test'@'%' IDENTIFIED BY 'test';"
-mysql -e "GRANT ALL PRIVILEGES ON test TO 'test'@'%';"
+mysql -e "CREATE USER 'viewer'@'%' IDENTIFIED BY 'viewer';"
+mysql -e "GRANT ALL PRIVILEGES ON test TO 'viewer'@'%';"
+
+
+#mysql -e "GRANT SELECT, INSERT, DELETE ON database_name.* TO database_user@'localhost';"
+mysql -e "GRANT SELECT ON test.* TO viewer@'*';"
+mysql -e "select * from mysql.user;"
+sudo mysql -e "select host, user, password from mysql.user;"
+
+
+
+sudo mysql -e "CREATE USER 'testx'@'192.168.0.15' IDENTIFIED BY 'testx';"
+sudo mysql -e "GRANT SELECT ON test.* TO 'testx'@'192.168.0.15';"
+
+
+sudo mysql -e "FLUSH PRIVILEGES;"
+
+sudo mysql -e "GRANT SELECT ON test.* TO viewer@'*';"
+
+
+sudo mysql -e "grant all privileges on test.* to testx@'*' identified by 'testx';"
+
+
+sudo mysql -e "GRANT SELECT ON  test.* to testx@'*' identified by 'testx';"
+#https://www.techonthenet.com/mysql/grant_revoke.php
+
 
 #sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 #sed 's/Linux/Unix/' linuxgeek.txt
