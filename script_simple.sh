@@ -55,6 +55,10 @@ mysql -e "CREATE USER 'viewer'@'%' IDENTIFIED BY 'viewer';"
 mysql -e "GRANT ALL PRIVILEGES ON test TO 'viewer'@'%';"
 
 
+sudo mysql -e "CREATE USER 'viewer'@'localhost' IDENTIFIED BY 'viewer';"
+sudo mysql -e "GRANT SELECT ON test.* TO 'viewer'@'localhost';"
+
+
 #mysql -e "GRANT SELECT, INSERT, DELETE ON database_name.* TO database_user@'localhost';"
 mysql -e "GRANT SELECT ON test.* TO viewer@'*';"
 mysql -e "select * from mysql.user;"
@@ -62,8 +66,8 @@ sudo mysql -e "select host, user, password from mysql.user;"
 
 
 
-sudo mysql -e "CREATE USER 'testx'@'192.168.0.15' IDENTIFIED BY 'testx';"
-sudo mysql -e "GRANT SELECT ON test.* TO 'testx'@'192.168.0.15';"
+sudo mysql -e "CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';"
+sudo mysql -e "GRANT SELECT ON test.* TO 'test'@'localhost';"
 
 
 sudo mysql -e "FLUSH PRIVILEGES;"
