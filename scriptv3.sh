@@ -185,3 +185,38 @@ reboot
 
 
 #https://gist.github.com/haisum/4fcd9146b6c972d0d3ca
+
+
+
+nano /home/pi/OctoPrintOverDebian.service
+
+
+[Unit]
+Description=OctoPrint over Debian service  
+After=network-online.target
+
+[Service]
+ExecStart=/home/pi/OctoPrint/bin/octoprint serve
+WorkingDirectory=/home/pi/OctoPrint/bin/octoprint
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo cp /home/pi/OctoPrintOverDebian.service /lib/systemd/system/
+
+
+
+sudo nano /etc/rc.local
+# append in the last line
+sudo service octoprint start
+
+
+
+#https://www.raspberrypi.org/forums/viewtopic.php?t=197513  
+#https://domoticproject.com/creating-raspberry-pi-service/
+#https://raspberrypi.stackexchange.com/questions/8734/execute-script-on-start-up
